@@ -3,14 +3,16 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use app\widgets\Alert;
 use yii\helpers\Html;
+use app\widgets\Alert;
 use yii\bootstrap\Nav;
+use app\assets\AppAsset;
+use yii\web\JqueryAsset;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
 
 AppAsset::register($this);
+JqueryAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -38,9 +40,9 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Home', 'url' => ['/users/index']],
             ['label' => 'hello', 'url' => ['/users/index']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'test', 'url' => ['/users/test']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
