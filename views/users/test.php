@@ -13,6 +13,8 @@ use yii\helpers\ArrayHelper;
     });
 </script>
 
+<form method="post">
+<input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
 <?= Html::tag('p', Html::encode($users[0]->username), [
     'class' => 'username'])
 ?></br>
@@ -33,3 +35,7 @@ use yii\helpers\ArrayHelper;
 
 <?= Html::radioList('radioname',22, ArrayHelper::map($users, 'id', 'username')) ?>
 
+<?= Html::activeDropDownList($users[1], 'id', ArrayHelper::map($users, 'id', 'username')) ?>
+<button type="submit">sub</button>
+</form>
+ 

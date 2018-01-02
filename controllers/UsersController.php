@@ -133,9 +133,9 @@ class UsersController extends Controller
     }
 
     public function actionTest(){
-        
+        $post = Yii::$app->request->post();
+        $get = Yii::$app->request->get();
         $users = Users::find()->all();
-        
         return $this->render('test',[
             'users' => $users,
         ]);
