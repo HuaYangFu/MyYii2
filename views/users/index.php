@@ -7,6 +7,7 @@ use yii\widgets\Pjax;
 use yii\grid\GridView;
 use yii\widgets\ListView;
 use yii\widgets\LinkPager;
+use yii\helpers\ArrayHelper;
 
 ?>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -25,10 +26,10 @@ $(document).ready(function(e){
     <div class="container">
         <div class="col-lg-6">
             <div class="input-group my-group"> 
-                <select id="lunch" name="username" class="selectpicker form-control" data-live-search="true" title="Please select a lunch ...">
-                    <option>asc</option>
-                    <option>test2</option>
-                </select> 
+                <?= Html::dropDownList('selectname', $users[1]->id, 
+                    ArrayHelper::map($users, 'id', 'username'),[
+                    ]);
+                ?>
                 <span class="input-group-btn">
                     <button class="btn btn-default my-group-button" type="submit">GO!</button>
                 </span>

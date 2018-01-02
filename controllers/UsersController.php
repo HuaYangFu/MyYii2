@@ -33,6 +33,7 @@ class UsersController extends Controller
         return $this->render('index',[
             'provider' => $provider,
             'pageSummary' => $pageSummary,
+            'users' => $users
         ]);
     }
 

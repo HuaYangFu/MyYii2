@@ -31,5 +31,5 @@ use yii\helpers\ArrayHelper;
 
 <?= Html::dropDownList('selectname', $users[0]->id, ArrayHelper::map($users, 'id', 'username')) ?>
 
-<?= Html::radioList('radioname', [16, 42], ArrayHelper::map($users, 'id', 'username')) ?>
+<?= Html::radioList('radioname',22, ArrayHelper::map($users, 'id', 'username')) ?>
 
