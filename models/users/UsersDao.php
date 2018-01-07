@@ -1,12 +1,33 @@
 <?php
 
-namespace app\models;
+namespace app\models\users;
 
-use app\models\Users;
+use app\models;
 
-class UsersModel extends Users{
+class UsersDao extends UsersRepository{
     
-    public function MyCreate($post){
+
+    public function beforeDelete()
+    {
+        if (!parent::beforeDelete()) {
+            return false;
+        }
+    
+        // validation
+        return true;
+    }
+
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+    
+        // validation
+        return true;
+    }
+
+    public function sersCreate($post){
         $users = new UsersModel();
         $filterpost = array_filter($post); 
         unset($filterpost['_csrf']);
@@ -16,7 +37,7 @@ class UsersModel extends Users{
         return $users->save();
     }
 
-    public function MySearch($post){
+    public function usersSearch($post){
         $sql = "select * from users where 1 = 1";
         $params = [];
 
@@ -28,7 +49,7 @@ class UsersModel extends Users{
         return self::getDb()->createCommand($sql,$params)->queryAll();
     }
 
-    public function MyUpdate($post){
+    public function usersUpdate($post){
         $id = $post['id'];
         $user = null;
         if(!empty($id)){

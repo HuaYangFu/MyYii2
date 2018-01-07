@@ -3,12 +3,11 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Users;
 use yii\web\Controller;
 use yii\data\Pagination;
-use app\models\UsersForm;
 use yii\widgets\ListView;
-use app\models\UsersModel;
+use app\models\users\Users;
+use app\models\users\UsersDao;
 use yii\data\ArrayDataProvider;
 
 class UsersController extends Controller
@@ -20,7 +19,7 @@ class UsersController extends Controller
 
     public function actionIndex(){
         
-        $users = Users::find()->all();
+        $users = UsersDao::find()->all();
         $pageSummary = "testsum";
 
         $provider = new ArrayDataProvider([
@@ -43,10 +42,10 @@ class UsersController extends Controller
         $users = null;
         $pageSummary = "testsum";
         if(!empty($post)){
-            $users = UsersModel::MySearch($post);
+            $users = UsersDao::usersSearch($post);
         }
         else{
-            $users = Users::find()->all();
+            $users = UsersDao::find()->all();
         }
 
 
@@ -58,6 +57,7 @@ class UsersController extends Controller
         ]);
         
         return $this->render('index',[
+            'users' => $users,
             'provider' => $provider,
             'pageSummary' => $pageSummary,
         ]);
@@ -67,7 +67,7 @@ class UsersController extends Controller
         $post = Yii::$app->request->post();
         if(!empty($post)){
             
-            $createResult = UsersModel::MyCreate($post);
+            $createResult = UsersDao::usersCreate($post);
 
             if ($createResult !== false) {
                 return $this->redirect(['index']);
@@ -92,7 +92,7 @@ class UsersController extends Controller
         $post = Yii::$app->request->post();
         if(!empty($post)){
             
-            $updateResult = UsersModel::MyUpdate($post);
+            $updateResult = UsersDao::usersUpdate($post);
 
             if ($updateResult !== false) {
                 return $this->redirect(['index']);
@@ -104,7 +104,7 @@ class UsersController extends Controller
 
         }
         else{
-            $user = Users::findOne(['id' => $get['id']]);
+            $user = UsersDao::findOne(['id' => $get['id']]);
             
             return $this->render('update',[
                 'user' => $user,
@@ -117,7 +117,7 @@ class UsersController extends Controller
         $get = Yii::$app->request->get();
         $id = $get['id'];
         if(!empty($id)){
-            $user = Users::findOne(['id' => $id]);
+            $user = UsersDao::findOne(['id' => $id]);
             if ($user->delete() !== false) {
                 return $this->redirect(['index']);
             } 
@@ -135,7 +135,7 @@ class UsersController extends Controller
     public function actionTest(){
         $post = Yii::$app->request->post();
         $get = Yii::$app->request->get();
-        $users = Users::find()->all();
+        $users = UsersDao::find()->all();
         return $this->render('test',[
             'users' => $users,
         ]);

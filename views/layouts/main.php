@@ -12,7 +12,6 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 
 AppAsset::register($this);
-JqueryAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

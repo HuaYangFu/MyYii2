@@ -8,9 +8,10 @@ use yii\grid\GridView;
 use yii\widgets\ListView;
 use yii\widgets\LinkPager;
 use yii\helpers\ArrayHelper;
+use yii\web\JqueryAsset;
 
+JqueryAsset::register($this);
 ?>
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script>
 $(document).ready(function(e){
     $('.search-panel .dropdown-menu').find('a').click(function(e) {
@@ -26,10 +27,6 @@ $(document).ready(function(e){
     <div class="container">
         <div class="col-lg-6">
             <div class="input-group my-group"> 
-                <?= Html::dropDownList('selectname', $users[1]->id, 
-                    ArrayHelper::map($users, 'id', 'username'),[
-                    ]);
-                ?>
                 <span class="input-group-btn">
                     <button class="btn btn-default my-group-button" type="submit">GO!</button>
                 </span>

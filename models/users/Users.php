@@ -1,11 +1,11 @@
 <?php
 
-namespace app\models;
+namespace app\models\users;
 
 use Yii;
 use yii\base\Model;
 
-class UsersForm extends Model
+class Users extends Model
 {
     public $id;
     public $address;
